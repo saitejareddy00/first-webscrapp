@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% block content %}
+<center>
+    <div class="ok">
+    <form method = "post" enctype="multipart/form-data" target="_blank">
+        {% csrf_token %}
+        <p><label for="id_name">Name:</label> <input type="text" name="name" maxlength="50" required id="id_name"></p>
+      <p><label for="id_hotel_Main_Img">CAR_IMAGE</label><center> <input type="file" onchange="previewFile()" name="hotel_Main_Img" accept="image/*" required id="id_hotel_Main_Img"></p></center>
+    <script>
+        function previewFile() {
+      var preview = document.getElementById('disp');
+      var file    = document.querySelector('input[type=file]').files[0];
+      var reader  = new FileReader();
+    
+      reader.onloadend = function () {
+
+        preview.src = reader.result;
+        preview.style.display='block';
+      }
+    
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "";
+      }
+    }
+    
+      
+    </script>
+    <center>
+    <img src="" height="400" alt="Image preview..." id="disp" class='rounded-image' ><br>
+        <input type="submit" name='Upload'>
+    </center>
+    </form>
+    </div>
+        
+    </center>
+    {% endblock %}
